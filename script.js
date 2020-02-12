@@ -1,5 +1,3 @@
-// // let h1 = document.querySelector("h1");
-// let div = document.querySelector("div");
 // // https://jsonplaceholder.typicode.com/posts
 // fetch("./db.json")
 //   .then(resp => resp.json())
@@ -42,10 +40,22 @@
 //   e.preventDefault();
 // };
 
+// let h1 = document.querySelector("h1");
+let div = document.querySelector("div");
+
 const getIds = async () => {
   const resp = await fetch("http://localhost:3000/ids");
   const data = await resp.json();
   console.log(data);
+  for (const key in data) {
+    if (data.hasOwnProperty(key)) {
+      const element = data[key];
+      console.log(element.id);
+      let h1 = document.createElement("h1");
+      h1.innerHTML = element.id;
+      div.appendChild(h1);
+    }
+  }
 };
 
 getIds();
